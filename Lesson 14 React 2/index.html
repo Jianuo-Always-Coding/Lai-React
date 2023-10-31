@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@^16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.13.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+    <!-- (browser) DOM -->
+    <!-- React - Virtual DOM --> 
+    <script type="text/babel">
+        // browser DOM
+        const ele1 = document.createElement("h1");// browser DOM element - Object
+        ele1.innerText = "Hello World1!Element!";
+        document.getElementById("root").append(ele1);
+
+        // Virtual DOM
+        // createElement(type,props,...children)
+        const ele2 = React.createElement("h1",null,"Hello World2!Element!"); // Plain Object
+        // document.getElementById("root").append(ele2); cannot do this directly. Has to do it through React DOM
+        
+        // JSX
+        const ele3 = <h1> Hello World3!Element!</h1>
+
+        // Function Component -- Recommand
+        function Hello1(props) {
+            console.log("Hello1 props", props);
+            // return <h1>Hello World, function component!</h1>;
+            // return 只能return 单一元素，如果想return多个，一定要用div包起来
+            return (
+                <div>
+                    <h1>Hello World1! I am {props.name}.</h1>
+                    <h2>2 * 2 = {2 * 2}</h2>
+                    <Hello2 name={props.name} age={props.age}></Hello2>
+                </div>
+            );
+        };
+        const Hello2 = (props) => {
+            console.log("Hello2 props", props);
+            return <h1>Hello World2! This is a Function Component!</h1>;
+            
+        };
+        // 使用ReactDOM.render()的时候，会把ID为root的component中所有内容清空，替换成<Hello>中的内容
+        //所以使用VeactDOM.render()后，Browser DOM中的内容不会显示在页面上
+        // ReactDOM.render(<Hello1 />, document.getElementById("root"));
+        // ReactDOM.render(<Hello2 />, document.getElementById("root"));
+        // 只会显示<Hello1 />中的内容，<Hello>中的内容会被替代
+        
+        //如果想要加更多的元素  
+        
+
+        // Class Component
+        class Hello3 extends React.Component{
+            constructor(props) {
+                super(props);
+                console.log("Hello3 props",props);
+            }
+
+            render() {
+                // class Component 需要用this来call props
+                return <h3>Hello World3!I am {this.props.name}</h3>
+            }
+        }
+        // This is how to pass props.
+        ReactDOM.render([
+            <Hello1 name="Petter" age="18"/>, 
+            ele2, ele3,
+            <Hello2 name="xiaohong" age="10"/>, 
+            <Hello3 name="xiaoming" age="23"/>,
+            <Hello3 name="xiaoWang" age="28"/>
+        ], 
+        document.getElementById("root"));
+
+    </script>
+
+</body>
+</html>

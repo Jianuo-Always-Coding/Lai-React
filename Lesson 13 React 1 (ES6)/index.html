@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("hello React 1 ES6");
+      let example = undefined; //declaration
+      example = 1; //assignment
+
+      let example2 = 1;
+      //  Block Scope (let, const, inside {...})
+      //  Function Scope (var, let, const inside a function)
+
+      // scoping --只能访问到xVar
+      {
+        const xConst = 1;
+        let xLet = 1;
+        var xVar = 1;
+      }
+
+      // 只能access到xVarLoop
+      for (let i = 0; i < 3; i++) {
+        const xConstLoop = 1;
+        var xVarLoop = 1;
+        let xLetLoop = 1;
+      }
+
+      // 都access不到
+      function exampleFunction() {
+        const xConstFun = 1;
+        var xVarFun = 1;
+        let xLetFun = 1;
+      }
+
+      // 都access不到
+      const arrowFunctionExample = () => {
+        const xConstArrow = 1;
+        let xLetArrow = 1;
+        var xVarArrow = 1;
+      };
+      const en = 1;
+      en = 2; // 不会改变en的值
+
+      // var 可以被hoisting，在定义前访问, undefined
+
+      try {
+       console.log("example3: ", example3);
+       const example3 = 2;
+     } catch {
+       console.log("something went wrong");
+     }
+
+
+     // destructuring
+     const array = [1, true, "charlie"];
+     const [x, y, z, whatIsThis] = array;
+
+
+     const laiofferStudentProfile = {
+       name: "ZhangSan",
+       age: 18,
+       motto:
+         "一个人为什么要努力？因为我喜欢的东西都很贵，我想去的地方都很远，我爱的人超完美。",
+     };
+
+
+     const { name: name1, age: age, motto } = laiofferStudentProfile;
+
+
+     // ... rest operator
+     function fn({ first, school }, second = "100", ...args) {
+       console.log("first", first, school);
+       console.log("second", second);
+       console.log("args: ", args);
+     }
+
+
+     // fn({first: 0});
+     // fn({first: 0}, 1);
+     const nameOnlyObj = { first: "surprise", school: "Harvard" };
+     fn(nameOnlyObj, true, "charlie", "nice");
+
+
+     // ... spread operator
+     const arr1 = [1, 2, 3];
+     const arr2 = [4, 5, 6];
+
+
+     const arr3 = [0, ...arr1, ...arr2, 7, 8, 9];
+
+
+     const CharlieStudent = {
+       ...laiofferStudentProfile,
+       name: "Charlie",
+       motto: "stay humble, stay foolish",
+     };
+
+
+     class Person {
+       constructor(name, age = 18) {
+         this.name = name;
+         this.age = age;
+       }
+
+
+       methodA() {
+         console.log("name", this.name);
+       }
+
+
+       methodB() {
+         console.log("age", this.age);
+       }
+     }
+
+
+     const person1 = new Person("Charlie", 40);
+
+
+     class Student extends Person {
+       constructor(name, age, school) {
+         super(name, age);
+         this.school = school;
+       }
+
+
+       methodC() {
+         console.log("school", this.school);
+       }
+     }
+
+
+     const xiaozhang = new Student("xiaozhang", 40, "Harvard");
+
+
+     // template string
+     // backtick - ``
+     // ${your_js_code}
+     const school = "USC";
+     const universityDiploma = `Congrats! You've graduated from ${school}`;
+
+    </script>
+  </body>
+</html>
+
+
+
